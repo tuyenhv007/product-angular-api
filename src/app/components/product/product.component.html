@@ -1,0 +1,36 @@
+<div class="card mt-3">
+  <h5 class="card-header">Product List</h5>
+  <div class="card-body">
+    <a class="btn btn-success" [routerLink]="['product/add']">Create</a>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">SKU</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of productList; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ product.sku }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>
+          <a [routerLink]="['product/edit', product.id]">
+            <i class="fa fa-edit" style="color: blue"></i>
+          </a>
+          <a class="link" routerLink="" (click)="deleteProduct(i)">
+            <i class="fa fa-trash" style="color: red"></i>
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
