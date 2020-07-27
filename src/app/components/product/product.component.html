@@ -1,5 +1,15 @@
 <div class="card mt-3">
-  <h5 class="card-header">Product List</h5>
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-4">
+        Product List
+      </div>
+      <div class="col-md-8">
+        <app-search (keyword)="search($event)"></app-search>
+      </div>
+    </div>
+
+  </div>
   <div class="card-body">
     <a class="btn btn-success" [routerLink]="['product/add']">Create</a>
     <table class="table table-striped">
@@ -14,7 +24,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let product of productList; index as i">
+      <tr *ngFor="let product of productListFind; index as i">
         <th scope="row">{{ i + 1 }}</th>
         <td>{{ product.sku }}</td>
         <td>{{ product.name }}</td>

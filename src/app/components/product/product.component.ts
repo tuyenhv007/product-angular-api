@@ -9,22 +9,38 @@ import {ProductService} from "../../services/product.service";
 })
 export class ProductComponent implements OnInit {
   productList: IProduct[] = [];
+  productListFind: IProduct[];
 
-  constructor(private productService: ProductService) {
+
+  constructor(
+    private productService: ProductService
+  ) {
   }
 
   ngOnInit(): void {
     this.productService.getProduct().subscribe(
-      next =>
-        (this.productList = next),
-      error =>
-        (this.productList = []));
+      data => {
+        this.productList = data;
+        this.productListFind = this.productList
+      });
+  }
+
+  search(event) {
+    let keyword = event.toLowerCase();
+    this.productListFind = (keyword) ? this.filterByKeyword(keyword) : this.productList;
+    console.log(this.productListFind);
+  }
+
+  filterByKeyword(keyword: string) {
+    return this.productList.filter(product => {
+      return product.name.toLowerCase().indexOf(keyword) != -1;
+    })
   }
 
   deleteProduct(index) {
-    const product = this.productList[index]
+    const product = this.productListFind[index]
     this.productService.deleteProduct(product.id).subscribe(next =>
-    this.productList = this.productList.filter(name => name.id !== product.id));
+    this.productListFind = this.productListFind.filter(name => name.id !== product.id));
   }
 
 }

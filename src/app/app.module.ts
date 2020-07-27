@@ -9,6 +9,7 @@ import {ProductComponent} from './components/product/product.component';
 import {MenuComponent} from './components/core/menu/menu.component';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SearchComponent} from "./components/core/search/search.component";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ProductAddComponent,
     ProductEditComponent,
     ProductComponent,
-    MenuComponent
+    MenuComponent,
+    SearchComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
